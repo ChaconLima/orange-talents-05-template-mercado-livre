@@ -5,11 +5,12 @@ import javax.validation.constraints.NotBlank;
 
 import org.hibernate.validator.constraints.Length;
 
+import br.com.zupacademy.mateuschacon.mercadolivre.Configuration.Validators.Custom.UniqueValue;
 import br.com.zupacademy.mateuschacon.mercadolivre.UserResource.Models.User;
 
 public class NewUserRequest {
     
-    @NotBlank @Email
+    @NotBlank @Email @UniqueValue(domainClass = User.class, fieldName = "login")
     private String login;
     @NotBlank @Length(min = 6)
     private String password;
