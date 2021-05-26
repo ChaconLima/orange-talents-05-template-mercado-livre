@@ -15,8 +15,12 @@ public class NewCategoryRequest {
     private String name;
 
 
+    /**
+     * by default, the idCategoryMother attribute is null.
+     *  Why the category entity may or may not have a mother category
+     */
     @ExisteEntity(domainClass = Category.class, fieldName = "id")
-    private String idCategoryMother =null;
+    private String idCategoryMother = null;
 
 
     public NewCategoryRequest(@NotBlank String name, String idCategoryMother) {
@@ -32,7 +36,6 @@ public class NewCategoryRequest {
         Optional<Category> category = categoryRepository.findById(this.idCategoryMother);
     
         return new Category(this.name, category.get());
-       
     }
 
 }
