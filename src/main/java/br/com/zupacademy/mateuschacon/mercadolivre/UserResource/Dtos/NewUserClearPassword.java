@@ -6,7 +6,7 @@ import org.hibernate.validator.constraints.Length;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.util.Assert;
 
-public class ClearPassword {
+public class NewUserClearPassword {
 
     @NotBlank @Length(min = 6)
     private String password;
@@ -14,7 +14,7 @@ public class ClearPassword {
     /**
     * @param password, cannot be blank and the length must be at least = 6
     */
-    public ClearPassword(@NotBlank @Length(min = 6) String password) {
+    public NewUserClearPassword(@NotBlank @Length(min = 6) String password) {
 
         Assert.hasLength(password, "password cannot be null");
         Assert.isTrue(password.length()>=6, "password length must be at least = 6");

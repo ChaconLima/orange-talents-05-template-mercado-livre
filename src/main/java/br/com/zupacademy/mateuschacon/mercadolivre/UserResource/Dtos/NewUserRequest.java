@@ -21,7 +21,7 @@ public class NewUserRequest {
     }
 
     public User toModel(){
-        ClearPassword clearPassword = new ClearPassword(this.password);
+        NewUserClearPassword clearPassword = new NewUserClearPassword(this.password);
         return new User(this.login, clearPassword.hash() );
     }
 
