@@ -53,4 +53,14 @@ public class ProductOpinion {
         this.product = product;
     }
 
+    public Integer getNote() {
+        return this.note;
+    }
+    public String getDescripion() {
+        return this.descripion;
+    }
+    public String getTitle() {
+        return this.title;
+    }
+
 }

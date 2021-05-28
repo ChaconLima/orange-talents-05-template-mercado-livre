@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -68,6 +68,13 @@ public class Product {
     @OneToMany(mappedBy = "product", cascade = CascadeType.MERGE)
     private Set<Image> images = new HashSet<>();
 
+    @OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
+    private Set<ProductOpinion> opinions = new HashSet<>();
+
+    @OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
+    private Set<ProductQuestion> questions = new HashSet<>();
+
+
     /**
      * Constructor 
      *==============================================================================*/
@@ -112,6 +119,24 @@ public class Product {
     }
     public User getUser() {
         return this.user;
+    }
+    public String getDescription() {
+        return this.description;
+    }
+    public BigDecimal getValue() {
+        return this.value;
+    }
+    public Set<ProductFeature> getFeatures() {
+        return this.features;
+    }
+    public Set<Image> getImages() {
+        return this.images;
+    }
+    public Set<ProductOpinion> getOpinions() {
+        return this.opinions;
+    }
+    public Set<ProductQuestion> getQuestions() {
+        return this.questions;
     }
 }
 

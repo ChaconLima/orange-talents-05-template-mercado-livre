@@ -42,6 +42,12 @@ public class ProductFeature {
     @Deprecated
     public ProductFeature(){}
 
+    public String getName() {
+        return this.name;
+    }
+    public String getDescription() {
+        return this.description;
+    }
 
     
 }

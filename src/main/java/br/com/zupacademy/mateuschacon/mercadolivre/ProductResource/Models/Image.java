@@ -37,5 +37,10 @@ public class Image {
         this.product = product;
     }
 
-
+    /**
+    *  Gets
+    *==============================================================================*/
+    public String getUrl() {
+        return this.url;
+    }
 }

@@ -10,6 +10,7 @@ import br.com.zupacademy.mateuschacon.mercadolivre.ProductResource.Dtos.NewImage
 import br.com.zupacademy.mateuschacon.mercadolivre.ProductResource.Dtos.NewOpinionRequest;
 import br.com.zupacademy.mateuschacon.mercadolivre.ProductResource.Dtos.NewProductRequest;
 import br.com.zupacademy.mateuschacon.mercadolivre.ProductResource.Dtos.NewQuestionRequest;
+import br.com.zupacademy.mateuschacon.mercadolivre.ProductResource.Dtos.ProductDetailsResponse;
 import br.com.zupacademy.mateuschacon.mercadolivre.ProductResource.Models.Product;
 import br.com.zupacademy.mateuschacon.mercadolivre.ProductResource.Models.ProductOpinion;
 import br.com.zupacademy.mateuschacon.mercadolivre.ProductResource.Models.ProductQuestion;
@@ -32,6 +33,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.GetMapping;
 
 
 @RestController
@@ -122,7 +124,7 @@ public class ProductsController {
             return ResponseEntity.ok().build();
         }
 
-        return ResponseEntity.badRequest().build();
+        return ResponseEntity.notFound().build();
     }
 
 
@@ -159,8 +161,24 @@ public class ProductsController {
         }
 
 
-        return ResponseEntity.badRequest().build();
+        return ResponseEntity.notFound().build();
         
     }
+
+    @GetMapping("/{id}/details")
+    public ResponseEntity<ProductDetailsResponse> findProduct(@PathVariable("id") String id_product) {
+
+        Optional<Product> product = this.productRepository.findById(id_product);
+
+        if(product.isPresent()){
+
+            ProductDetailsResponse productDetails = new ProductDetailsResponse(product.get());
+
+            return ResponseEntity.ok(productDetails);
+        }
+        return ResponseEntity.notFound().build();
+        
+    }
+    
     
 }
