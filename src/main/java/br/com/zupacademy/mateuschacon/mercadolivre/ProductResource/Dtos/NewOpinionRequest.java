@@ -1,5 +1,6 @@
 package br.com.zupacademy.mateuschacon.mercadolivre.ProductResource.Dtos;
 
+import javax.validation.Valid;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
@@ -26,7 +27,7 @@ public class NewOpinionRequest {
         this.descripion = descripion;
     }
 
-    public ProductOpinion toModel(User user, Product product) {
+    public ProductOpinion toModel( @Valid User user, @Valid Product product) {
         return new ProductOpinion(this.note, this.title, this.descripion, user, product) ;
     }
 
