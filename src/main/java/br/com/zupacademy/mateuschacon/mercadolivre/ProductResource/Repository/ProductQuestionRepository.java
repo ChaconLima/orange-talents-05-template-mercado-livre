@@ -3,9 +3,9 @@ package br.com.zupacademy.mateuschacon.mercadolivre.ProductResource.Repository;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import br.com.zupacademy.mateuschacon.mercadolivre.ProductResource.Models.ProductOpinion;
+import br.com.zupacademy.mateuschacon.mercadolivre.ProductResource.Models.ProductQuestion;
 
 @Repository
-public interface ProductOpinionRepository extends CrudRepository<ProductOpinion, String>{
+public interface ProductQuestionRepository extends CrudRepository<ProductQuestion, String>{
     
 }

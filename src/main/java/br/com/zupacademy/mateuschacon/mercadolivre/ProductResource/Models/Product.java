@@ -107,6 +107,12 @@ public class Product {
     public String getId() {
         return this.id;
     }
+    public String getName(){
+        return this.name;
+    }
+    public User getUser() {
+        return this.user;
+    }
 }
 
 
