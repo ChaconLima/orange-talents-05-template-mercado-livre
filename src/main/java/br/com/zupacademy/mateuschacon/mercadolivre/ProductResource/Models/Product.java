@@ -26,6 +26,7 @@ import javax.validation.constraints.Size;
 import org.hibernate.annotations.GenericGenerator;
 
 import br.com.zupacademy.mateuschacon.mercadolivre.CategoryResource.Models.Category;
+import br.com.zupacademy.mateuschacon.mercadolivre.ProductResource.Dtos.NewImagesRequest;
 import br.com.zupacademy.mateuschacon.mercadolivre.ProductResource.Dtos.NewProductFeatureRequest;
 import br.com.zupacademy.mateuschacon.mercadolivre.UserResource.Models.User;
 
@@ -65,6 +66,9 @@ public class Product {
     @ManyToOne @NotNull
     private User user;
 
+    @OneToMany(mappedBy = "product", cascade = CascadeType.MERGE)
+    private Set<Image> images = new HashSet<>();
+
     /**
      * Constructor 
      *==============================================================================*/
@@ -83,6 +87,26 @@ public class Product {
         Set <ProductFeature> newFeatures = features.stream().map( feature-> feature.toModel(this)).collect(Collectors.toSet());
         this.features.addAll(newFeatures);
         this.user=user;
+    }
+     /**
+     * Methods 
+     *==============================================================================*/
+    public void addImages( Collection<String> imagesUrlList){
+
+        Set<Image>newImages = new HashSet<>(); 
+        imagesUrlList.forEach( url->{
+
+            Image image = new Image(url, this);
+            newImages.add(image);
+
+        });
+        this.images.addAll(newImages);
+    }
+    /**
+     * Gets 
+     *==============================================================================*/
+    public String getId() {
+        return this.id;
     }
 }
 
