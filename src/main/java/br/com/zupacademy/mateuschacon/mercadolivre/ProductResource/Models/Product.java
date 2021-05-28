@@ -26,7 +26,6 @@ import javax.validation.constraints.Size;
 import org.hibernate.annotations.GenericGenerator;
 
 import br.com.zupacademy.mateuschacon.mercadolivre.CategoryResource.Models.Category;
-import br.com.zupacademy.mateuschacon.mercadolivre.ProductResource.Dtos.NewImagesRequest;
 import br.com.zupacademy.mateuschacon.mercadolivre.ProductResource.Dtos.NewProductFeatureRequest;
 import br.com.zupacademy.mateuschacon.mercadolivre.UserResource.Models.User;
 
