@@ -34,7 +34,7 @@ public class NewProductRequest {
     private BigDecimal value;
 
     @NotNull @Positive
-    private String quantity;
+    private Long quantity;
 
     @NotBlank @Size(max = 1000)
     private String description;
@@ -52,7 +52,7 @@ public class NewProductRequest {
      * Constructor 
      *==============================================================================*/
     public NewProductRequest(@NotBlank String name, @NotNull @Positive BigDecimal value,
-            @NotNull @Positive String quantity, @NotBlank @Size(max = 1000) String description,
+            @NotNull @Positive Long quantity, @NotBlank @Size(max = 1000) String description,
             @NotBlank String identifierCategory, @NotNull @Size(min = 3) List<@Valid NewProductFeatureRequest> features) {
         this.name = name;
         this.value = value;

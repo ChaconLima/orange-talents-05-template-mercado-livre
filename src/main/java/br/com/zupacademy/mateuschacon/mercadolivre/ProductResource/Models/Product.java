@@ -21,6 +21,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
+import javax.validation.constraints.PositiveOrZero;
 import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -47,8 +48,8 @@ public class Product {
     @NotNull @Positive
     private BigDecimal value;
 
-    @NotNull @Positive
-    private String quantity;
+    @NotNull @PositiveOrZero
+    private Long quantity;
 
     @NotBlank @Size(max = 1000)
     private String description;
@@ -81,7 +82,7 @@ public class Product {
     @Deprecated
     public Product(){}
 
-    public Product(@NotBlank String name, @NotNull @Positive BigDecimal value, @NotNull @Positive String quantity,
+    public Product(@NotBlank String name, @NotNull @Positive BigDecimal value, @NotNull @Positive Long quantity,
             @NotBlank @Size(max = 1000) String description, @NotNull LocalDateTime registrationTime, Category category,
             @Size(min=3) @Valid Collection<NewProductFeatureRequest> features, @NotNull User user) {
         this.name = name;
@@ -107,6 +108,14 @@ public class Product {
 
         });
         this.images.addAll(newImages);
+    }
+    public boolean isValidPurchase(Long quantityPurchase){
+
+        if( quantityPurchase <= this.quantity){
+            this.quantity-= quantityPurchase;
+            return true;
+        }
+        return false;
     }
     /**
      * Gets 
